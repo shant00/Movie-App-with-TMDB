@@ -1,32 +1,37 @@
-import axios from 'axios';
+import axiosInstance from './axiosInstance';
+import { movieSchema, moviesListSchema } from './zodSchemas';
 
-const API_KEY = process.env.NEXT_PUBLIC_TMDB_API_KEY; // Ensure to set your TMDB API Key in .env
 
-const api = axios.create({
-    baseURL: 'https://api.themoviedb.org/3',
-});
-
-export const fetchPopularMovies = async (page: number) => {
-    const { data } = await api.get(`/movie/popular?api_key=${API_KEY}&page=${page}`);
-    return data.results;
+// Fetch movies list by search query
+export const fetchMovies = async (query: string, page: number = 1) => {
+    console.log(query);
+    const response = await axiosInstance.get('/search/movie', {
+        params: { query, page },
+    });
+    const validatedData = moviesListSchema.parse(response.data);
+    return validatedData;
 };
 
-export const searchMovies = async (query: string, page: number) => {
-    const { data } = await api.get(`/search/movie?api_key=${API_KEY}&query=${query}&page=${page}`);
-    return data.results;
+// Fetch popular movies (for default load)
+export const fetchPopularMovies = async (page: number = 1) => {
+    const response = await axiosInstance.get('/movie/popular', {
+        params: { page },
+    });
+    const validatedData = moviesListSchema.parse(response.data);
+    return validatedData;
 };
 
-export const fetchMovieDetails = async (id: number) => {
-    const { data } = await api.get(`/movie/${id}?api_key=${API_KEY}`);
-    return data;
+// Fetch movie details by ID
+export const fetchMovieDetails = async (id: string) => {
+    const response = await axiosInstance.get(`/movie/${id}`);
+    const validatedData = movieSchema.parse(response.data);
+    return validatedData;
 };
 
-export const fetchMovieCredits = async (id: number) => {
-    const { data } = await api.get(`/movie/${id}/credits?api_key=${API_KEY}`);
-    return data.cast;
-};
 
-export const fetchMovieRecommendations = async (id: number) => {
-    const { data } = await api.get(`/movie/${id}/recommendations?api_key=${API_KEY}`);
-    return data.results;
+//fetch recommendations movies 
+export const fetchRecommendations = async (id: string) => {
+    const response = await axiosInstance.get(`/movie/${id}/recommendations`);
+    const validatedData = moviesListSchema.parse(response.data);
+    return validatedData;
 };

@@ -1,4 +1,5 @@
 
+import Link from 'next/link';
 import { ReactNode } from 'react';
 
 interface LayoutProps {
@@ -10,6 +11,9 @@ const Layout = ({ children }: LayoutProps) => {
         <div className="layout">
             <header>
                 <h1>Movie App</h1>
+                <Link href="/">Home</Link>
+                <Link href="/watchlist">WatchList</Link>
+
             </header>
             <main>{children}</main>
         </div>
