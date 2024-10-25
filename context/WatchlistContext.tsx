@@ -1,4 +1,3 @@
-// context/WatchlistContext.tsx
 "use client";
 import { useWatchlist } from '@/hooks/useWatchlist';
 import { Movie } from '@/types/movieTypes';
@@ -16,7 +15,6 @@ const WatchlistContext = createContext<WatchlistContextType | undefined>(undefin
 export const WatchlistProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
     const { watchlist, addToWatchlist, removeFromWatchlist } = useWatchlist();
 
-    // Load watchlist from localStorage on initial render
     useEffect(() => {
         const storedWatchlist = localStorage.getItem('watchlist');
         if (storedWatchlist) {
@@ -24,7 +22,6 @@ export const WatchlistProvider: React.FC<{ children: React.ReactNode }> = ({ chi
         }
     }, [addToWatchlist]);
 
-    // Save watchlist to localStorage whenever it changes
     useEffect(() => {
         localStorage.setItem('watchlist', JSON.stringify(watchlist));
     }, [watchlist]);
@@ -36,7 +33,6 @@ export const WatchlistProvider: React.FC<{ children: React.ReactNode }> = ({ chi
     );
 };
 
-// Custom hook to use the Watchlist context
 export const useWatchlistContext = () => {
     const context = useContext(WatchlistContext);
     if (!context) {

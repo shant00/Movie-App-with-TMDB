@@ -1,5 +1,3 @@
-//hook/useWatchlist.ts
-
 import { create } from 'zustand';
 import { Movie } from '../types/movieTypes';
 

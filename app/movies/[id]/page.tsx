@@ -1,5 +1,3 @@
-// app/movies/[id]/page.tsx
-// app/movies/[id]/page.tsx
 "use client"
 import { fetchMovieDetails, fetchRecommendations } from '@/lib/api';
 import { Movie } from '@/types/movieTypes';
@@ -26,7 +24,7 @@ const MovieDetailsPage = ({ params }: { params: Promise<{ id: string }> }) => {
         fetchRecommendationsMovie();
     }, [movieId]);
 
-    if (!movie) return <div>Loading...</div>;
+    if (!movie) return (<div>Loading...</div>);
 
     return (
         <div className="container mx-auto p-4">

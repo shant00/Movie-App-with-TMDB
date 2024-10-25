@@ -1,4 +1,4 @@
-//layout.tsx
+import ThemeToggle from "@/components/ThemeToggle";
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import Layout from '../components/Layout';
@@ -31,7 +31,10 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <WatchlistProvider>
-          <Layout>{children}</Layout>
+          <div className="min-h-screen bg-white dark:bg-gray-800 transition-all duration-300">
+            <ThemeToggle />
+            <Layout>{children}</Layout>
+          </div>
         </WatchlistProvider>
       </body>
     </html>

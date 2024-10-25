@@ -1,4 +1,3 @@
-//api/watchlist/route.ts
 import { movieSchema } from '@/lib/zodSchemas';
 import { Movie } from '@/types/movieTypes';
 import { NextResponse } from 'next/server';
@@ -11,7 +10,7 @@ export async function GET() {
 
 export async function POST(req: Request) {
     const movie = await req.json();
-    const parsedMovie = movieSchema.parse(movie); // Zod validation
+    const parsedMovie = movieSchema.parse(movie);
     watchlist.push(parsedMovie);
     return NextResponse.json(parsedMovie);
 }

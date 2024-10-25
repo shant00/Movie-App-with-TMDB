@@ -32,14 +32,13 @@ const MovieList: React.FC<MovieListProps> = ({ query = '' }) => {
         setLoading(false);
     };
 
-    // Call loadMovies whenever page or query changes
     useEffect(() => {
         loadMovies();
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [page, query]);
 
     useEffect(() => {
-        setPage(1); // Reset page when query changes
+        setPage(1);
     }, [query]);
 
     const handleObserver = useCallback(
@@ -73,7 +72,7 @@ const MovieList: React.FC<MovieListProps> = ({ query = '' }) => {
                 {movies.map((movie, index) => (
                     <div
                         key={`${movie.id}-${Math.random()}`}
-                        ref={index === movies.length - 1 ? lastMovieElementRef : null} // Attach ref to the last movie
+                        ref={index === movies.length - 1 ? lastMovieElementRef : null}
                     >
                         <MovieCard movie={movie} />
                     </div>

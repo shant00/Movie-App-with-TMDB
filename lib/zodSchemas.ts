@@ -1,6 +1,6 @@
 import { z } from 'zod';
 
-// Zod schema for movie API response validation
+
 export const movieSchema = z.object({
     id: z.number(),
     title: z.string(),
