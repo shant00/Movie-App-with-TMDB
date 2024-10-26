@@ -1,14 +1,15 @@
-import ThemeToggle from "@/components/ThemeToggle";
+import { AuthProvider } from "@/context/AuthContext";
 import type { Metadata } from "next";
 import localFont from "next/font/local";
-import Layout from '../components/Layout';
 import { WatchlistProvider } from '../context/WatchlistContext';
 import "./globals.css";
+
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
   variable: "--font-geist-sans",
   weight: "100 900",
 });
+
 const geistMono = localFont({
   src: "./fonts/GeistMonoVF.woff",
   variable: "--font-geist-mono",
@@ -30,12 +31,13 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <WatchlistProvider>
-          <div className="min-h-screen bg-white dark:bg-gray-800 transition-all duration-300">
-            <ThemeToggle />
-            <Layout>{children}</Layout>
-          </div>
-        </WatchlistProvider>
+        <AuthProvider>
+          <WatchlistProvider>
+            <div className="min-h-screen bg-white dark:bg-gray-800 transition-all duration-300">
+              {children}
+            </div>
+          </WatchlistProvider>
+        </AuthProvider>
       </body>
     </html>
   );

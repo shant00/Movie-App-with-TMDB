@@ -1,7 +1,7 @@
 'use client';
 import MovieList from '@/components/MovieList';
 import { useState } from 'react';
-import SearchBar from '../components/SearchBar';
+import SearchBar from '../../components/SearchBar';
 
 
 const HomePage = () => {

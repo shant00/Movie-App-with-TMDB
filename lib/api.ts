@@ -1,3 +1,4 @@
+
 import axiosInstance from './axiosInstance';
 import { movieSchema, moviesListSchema } from './zodSchemas';
 
@@ -34,4 +35,9 @@ export const fetchRecommendations = async (id: string) => {
     const response = await axiosInstance.get(`/movie/${id}/recommendations`);
     const validatedData = moviesListSchema.parse(response.data);
     return validatedData;
+};
+
+export const fetchCast = async (id: string) => {
+    const response = await axiosInstance.get(`/movie/${id}/credits`);
+    return response.data;
 };

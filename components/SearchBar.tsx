@@ -25,14 +25,14 @@ const SearchBar: React.FC<SearchBarProps> = ({ onSearch }) => {
     return (
         <form onSubmit={handleSubmit(onSubmit)} className="mb-4 flex">
             <input
-                {...register('query')}
+                {...register('query', { required: 'Search query is required' })}
                 placeholder="Search movies..."
-                className="border p-2 rounded-l-lg"
+                className="border p-2 rounded-l-lg dark:border-gray-700 dark:bg-gray-800 dark:text-gray-300 placeholder-gray-400 dark:placeholder-gray-600"
             />
-            <button type="submit" className="bg-blue-500 text-white p-2 rounded-r-lg">
+            <button type="submit" className="bg-blue-500 text-white p-2 rounded-r-lg hover:bg-blue-600 transition duration-200">
                 Search
             </button>
-            {errors.query && <p className="text-red-500">{errors.query.message}</p>}
+            {errors.query && <p className="text-red-500 mt-2">{errors.query.message}</p>}
         </form>
     );
 };

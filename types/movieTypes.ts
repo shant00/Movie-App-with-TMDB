@@ -1,4 +1,3 @@
-// types/movieTypes.ts
 
 export interface Genre {
     id: number;
@@ -7,17 +6,11 @@ export interface Genre {
 
 
 export interface Movie {
-
     id: number;
-
     title: string;
-
     overview: string | null;
-
     poster_path: string | null;
-
     release_date: string | null;
-
     genres?: { id: number; name: string }[];
 
 }
